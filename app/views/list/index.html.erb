@@ -1,0 +1,64 @@
+
+
+<%= link_to('send my report', '/report/today') %>
+
+<h4> bash:</h4>
+<div class="current_stack">
+  <%= print_bug_list(@bugs) %>
+</div>
+
+<% p_chart_res = pie_chart(@users, @bugs) %>
+
+<div class="statistic">
+    <div id='d_statistic'></div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        // Radialize the colors
+        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+            return {
+                radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        });
+
+        // Build the chart
+        $('#d_statistic').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '- last 5 days - <br /> <b><%=p_chart_res[1]%></b> tickets / <b><%= p_chart_res[3]%></b> points #closed <br /><br /><br /><%= p_chart_res[2].join(', '.html_safe)%>: 0%'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y} points</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Math.floor(this.percentage*100)/100 +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'closed',
+                data: <%= p_chart_res[0] %>
+            }]
+        });
+    });
+</script>

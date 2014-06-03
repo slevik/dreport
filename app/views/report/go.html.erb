@@ -1,0 +1,13 @@
+<%= link_to('Send my report >>', '/report/today') %>
+
+<div>
+  <%= form_for @store, method: "POST", url: {action: "go"}, html: {class: "nifty_form"} do |f| %>
+      <%= f.text_area :body, size: "60x12" %>
+      <%= f.submit "Update" %>
+  <% end %>
+</div>
+
+<h4> Current admin stack:</h4>
+<div class="current_stack admin_div">
+  <%= print_admin_bug_list(@bugs) %>
+</div>
