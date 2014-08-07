@@ -24,7 +24,7 @@ module ReportHelper
       res = res + "<div class='bug_item'>"
       res = res + "<div class='inline delete'>#{link_to('x', "/report/delete?bug=#{bug.id}&admin=true")}</div>"
       res = res + "<div class='inline' style='width:100px;text-align:center;font-size:13px;margin-top:2px;'>#{bug.number}&nbsp;</div>"
-      project = Projects.find_by_id(bug.project)
+      project = Project.find_by_id(bug.project)
       res = res + "<div class='inline' style='width:100px;text-align:left;font-weight:bold;'>#{project.name if project}</div>"
       user_name = Users.find_by_id(bug.user)
       res = res + "<div class='inline' style='width:100px;text-align:left;color:blue;'>#{user_name.name if user_name}</div>"
@@ -46,7 +46,7 @@ module ReportHelper
     res = ''
     project_day = nil
     bugs.map do |bug|
-      project = Projects.find_by_id(bug.project)
+      project = Project.find_by_id(bug.project)
       if project_day != bug.project
         project_day = bug.project
         res = res + "

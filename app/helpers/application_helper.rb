@@ -14,4 +14,14 @@ module ApplicationHelper
   def print_day
     {0 => 'today', -1 => '-1 day', -2 => '-2 days', -3 => '-3 days',-2 => '-2 days', -4 => '-4 days',-5 => '-5 days', -6 => '-6 days',-7 => '-7 days', -8 => '-8 days',-9 => '-9 days', -10 => '-10 days'}
   end
+
+  def div_class(status)
+    if status == "1"
+      "working"
+    elsif status == "-1"
+      "not-working"
+    else
+      "unchecked"
+    end
+  end
 end

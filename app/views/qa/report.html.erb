@@ -1,0 +1,237 @@
+<div class="close">
+  <%= link_to('x', qa_index_path) %>
+</div>
+Send report
+|
+<%= link_to "Show history", "/qa" %>
+|
+<%= link_to('Modules', '/qa/projects') %>
+<h3 align="center">Send QA Report</h3>
+
+<%= form_for @project_pr_module, url: {action: :create_project_pr_module}, method: :post do |f| %>
+
+  <span>Project:</span>
+  <%= f.select(:project_id, options_from_collection_for_select(@projects, "id", "name", :selected => @projectname), prompt: "Select project" ) %>
+  <br/>
+
+  <span>Name:</span>
+  <%= f.select(:user_id, options_from_collection_for_select(@users, "id", "name", :selected => @username), prompt: "Select username" ) %>
+  <br />
+
+  <span>Date:</span>
+  <%= f.text_field :date %>
+  <br />
+  <br />
+
+  <span>ChangeList:</span>
+  <%= f.text_field :change_list_api, placeholder: "API", style: 'width:55px' %>/
+  <%= f.text_field :change_list_ui, placeholder: "UI", style: 'width:55px' %>
+  <br/>
+
+
+  <div id="office-v2">
+    <p>Modules:</p>
+    <div class="modules-settings">
+      <% unless @officev2_modules.empty? %>
+        <% @officev2_modules.each do |officev2_module| %>
+          <b>
+            <div class="module_magic module_0" id="<%= officev2_module.id %>">
+                <%= "#{officev2_module.name} [#{officev2_module.is_api ? "API" : "UI"}]" %>
+            </div>
+          </b>
+          <div style="display:none">
+          <input  class="radio_<%= officev2_module.id %>" type="radio" value="1" name="project_pr_module[modules][<%= officev2_module.id %>]" /><span>Work</span>
+          <input class="radio_<%= officev2_module.id %>" type="radio" value="-1" name="project_pr_module[modules][<%= officev2_module.id %>]" /><span>Not work</span>
+          <input class="radio_<%= officev2_module.id %>" checked type="radio" value="0" name="project_pr_module[modules][<%= officev2_module.id %>]" /><span>Unchecked</span>
+          </div>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>Office v2 haven't any modules.</p>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="vivint">
+    <p>Modules:</p>
+    <div class="modules-settings">
+      <% unless @vivint_modules.empty? %>
+        <% @vivint_modules.each do |vivint_module| %>
+          <b>
+            <div class="module_magic module_0" id="<%= vivint_module.id %>">
+              <%= "#{vivint_module.name} [#{vivint_module.is_api ? "API" : "UI"}]" %>
+            </div>
+          </b>
+          <div style="display:none">
+          <input type="radio" value="1" name="project_pr_module[modules][<%= vivint_module.id %>]" /><span>Work</span>
+          <input type="radio" value="-1" name="project_pr_module[modules][<%= vivint_module.id %>]" /><span>Not work</span>
+          <input checked type="radio" value="0" name="project_pr_module[modules][<%= vivint_module.id %>]" /><span>Unchecked</span>
+          </div>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>Vivint haven't any modules.</p>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="myooma-old">
+    <p>Modules:</p>
+    <div class="modules-settings">
+      <% unless @myoomaold_modules.empty? %>
+        <% @myoomaold_modules.each do |myoomaold_module| %>
+          <b>
+            <div class="module_magic module_0" id="<%= myoomaold_module.id %>">
+              <%= "#{myoomaold_module.name} [#{myoomaold_module.is_api ? "API" : "UI"}]" %>
+            </div>
+          </b>
+          <div style="display:none">
+          <input type="radio" value="1" name="project_pr_module[modules][<%= myoomaold_module.id %>]" /><span>Work</span>
+          <input type="radio" value="-1" name="project_pr_module[modules][<%= myoomaold_module.id %>]" /><span>Not work</span>
+          <input checked type="radio" value="0" name="project_pr_module[modules][<%= myoomaold_module.id %>]" /><span>Unchecked</span>
+          </div>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>MyOoma old haven't any modules.</p>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="myooma-v2">
+    <p>Modules:</p>
+    <div class="modules-settings">
+      <% unless @myoomav2_modules.empty? %>
+        <% @myoomav2_modules.each do |myoomav2_module| %>
+          <b>
+            <div class="module_magic module_0" id="<%= myoomav2_module.id %>">
+              <%= "#{myoomav2_module.name} [#{myoomav2_module.is_api ? "API" : "UI"}]" %>
+            </div>
+          </b>
+          <div style="display:none">
+          <input type="radio" value="1" name="project_pr_module[modules][<%= myoomav2_module.id %>]" /><span>Work</span>
+          <input type="radio" value="-1" name="project_pr_module[modules][<%= myoomav2_module.id %>]" /><span>Not work</span>
+          <input checked type="radio" value="0" name="project_pr_module[modules][<%= myoomav2_module.id %>]" /><span>Unchecked</span>
+          </div>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>MyOoma v2 haven't any modules.</p>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+
+  <div id="screener">
+    <p>Modules:</p>
+    <div class="modules-settings">
+      <% unless @screener_modules.empty? %>
+        <% @screener_modules.each do |screener_module| %>
+          <b><%= "#{screener_module} [#{screener_module.is_api ? "API" : "UI"}]" %></b>
+          <div style="display:none">
+          <input type="radio" value="1" name="project_pr_module[modules][<%= screener_module.id %>]" /><span>Work</span>
+          <input type="radio" value="-1" name="project_pr_module[modules][<%= screener_module.id %>]" /><span>Not work</span>
+          <input checked type="radio" value="0" name="project_pr_module[modules][<%= screener_module.id %>]" /><span>Unchecked</span>
+          </div>
+          <br/>
+        <% end %>
+      <% else %>
+        <p>Screener haven't any modules.</p>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <br/>
+
+  <%= submit_tag "Send" %>
+<% end %>
+
+<script>
+  $(document).ready(function(){ 
+    $(function(){
+      $("#project_pr_module_date").datepicker().datepicker('setDate', 'today');
+    });
+    $("#office-v2").hide();
+    $("#vivint").hide();
+    $("#myooma-old").hide();
+    $("#myooma-v2").hide();
+    $("#screener").hide(); 
+
+    $('#project_pr_module_project_id').change(function(){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").hide();
+
+
+
+      if ($('#project_pr_module_project_id option:selected').val() == 5){
+        $("#office-v2").show();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#project_pr_module_project_id option:selected').val() == 6){
+        $("#office-v2").hide();
+        $("#vivint").show();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#project_pr_module_project_id option:selected').val() == 7){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").show();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#project_pr_module_project_id option:selected').val() == 8){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").show();
+        $("#screener").hide(); 
+      }
+
+      if ($('#project_pr_module_project_id option:selected').val() == 9){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").show(); 
+      }
+    });
+
+    if ($('#project_pr_module_project_id').index() != 0) {
+        $('#project_pr_module_project_id').change();
+    }
+
+    $('.module_magic').click(function() {
+        var id= $(this).attr('id');
+        var v = $('input[name="project_pr_module[modules][' + id + ']"]:checked').val();
+        $(this).removeClass('module_' + v);
+        if (v == '0') {
+            v = '1';
+        } else {
+            if (v == '1') {
+                v = '-1';
+            } else {
+                v = '0';
+            }
+        }
+        $(this).addClass('module_' + v);
+        $('input[name="project_pr_module[modules][' + id + ']"]').val(v);
+    });
+
+  });
+
+
+</script>

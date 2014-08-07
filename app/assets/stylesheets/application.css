@@ -146,3 +146,43 @@
     font-size:11px;
     color: black;
 }
+.working {
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 4px;
+  background-color: #81ff58;
+  color: #ffffff;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+.not-working {
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 4px;
+  background-color: #ff4828;
+  color: #ffffff;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+.unchecked {
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 4px;
+  background-color: #cccccc;
+  color: #ffffff;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+.modules-settings {
+  padding-left: 40px;
+}
+a.delete-link {
+  color: red;
+  text-decoration: none;
+}
+.show-history-td {
+  padding-left: 20px;
+}

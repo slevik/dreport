@@ -1,0 +1,57 @@
+<button onClick="window.location='/qa/report';" value="Send report">Send report</button>
+|
+Show history
+|
+<%= link_to('Modules', '/qa/projects') %>
+
+<br/><br/><br/>
+<div class="current_stack">
+  <table >
+    <% if @project_pr_modules %>
+      <% @project_pr_modules.each do |project_module| %>
+        <tr>
+          <td align="left">
+            <b><%= Project.find(project_module.project_id).name %></b>
+            (
+            <% if project_module.change_list_api && !project_module.change_list_api.empty?%>
+              <b>
+                <%= project_module.change_list_api %>
+              </b>_api
+            <% end %>
+            /
+            <% if project_module.change_list_api && !project_module.change_list_api.empty? %>
+              <b>
+                <%= project_module.change_list_ui %>
+              </b>_ui
+            <% end %>
+            )
+          </td>
+          <td align="right" class="show-history-td">
+            <i><%= project_module.date %></i> <%= Users.find(project_module.user_id).name %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>
+              <% project_module.modules.each do |module_id, status| %>
+                  <% mod = PrModule.find_by_id(module_id) %>
+                  <% if mod && mod.project_id == project_module.project_id %>
+                    <span class="<%= div_class(status) %>">
+                      <%= mod.name %>
+                    </span>
+                  <% end %>
+              <% end %>
+            </p>
+            <div style="margin:25px;">&nbsp;</div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4" valign="center">
+      	  <p>ProjectModules is empty...</p>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

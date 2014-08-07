@@ -1,0 +1,10 @@
+class CreatePrModules < ActiveRecord::Migration
+  def change
+    create_table :pr_modules do |t|
+      t.string   :name
+      t.integer  :project_id
+
+      t.timestamps
+    end
+  end
+end

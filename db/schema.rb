@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140540214642) do
+ActiveRecord::Schema.define(version: 20140806110452) do
 
   create_table "bugs", force: true do |t|
     t.integer  "user"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 20140540214642) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "points",      default: 1
+  end
+
+  create_table "pr_modules", force: true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_api"
+    t.boolean  "is_ui"
+  end
+
+  create_table "project_pr_modules", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "change_list_ui",  default: ""
+    t.string   "change_list_api", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "date"
+    t.string   "modules"
   end
 
   create_table "projects", force: true do |t|

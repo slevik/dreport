@@ -36,7 +36,7 @@ module ListHelper
       res = res + "<div class='bug_item'>"
       res = res + "<div class='inline delete' style='position:absolute;'>#{link_to('x', "/report/delete?bug=#{bug.id}")}</div>" if @username ==  bug.user.to_s
       res = res + "<div class='inline' style='width:100px;text-align:center;font-size:13px;margin-top:4px;'>#{print_url_issue(bug.number != 0 ? bug.number : 'none')}&nbsp;</div>"
-      project = Projects.find_by_id(bug.project)
+      project = Project.find_by_id(bug.project)
       res = res + "<div class='inline' style='width:100px;text-align:left;font-weight:bold;font-family:vernada;font-size:15px;'>#{project.name if project}</div>"
 
       res = res + "<div class='inline' style='width:100px;text-align:left;color:blue;'>#{user_name.name if user_name}</div>"

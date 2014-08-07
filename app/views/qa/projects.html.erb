@@ -1,0 +1,164 @@
+<button onClick="window.location='/qa/report';" value="Send report">Send report</button>
+|
+<%= link_to('Show history', '/qa') %>
+|
+Modules
+
+<br/><br/>
+<%= form_for @pr_module, url: {controller: :pr_modules, action: :create }, method: :post do |f| %>
+
+  <%= f.label :project_id %>
+  <%= f.select(:project_id, options_from_collection_for_select(@projects, "id", "name"), prompt: "Select project" ) %>
+
+  <p>Modules:</p>
+
+  <div id="office-v2" class="modules-settings">
+    <% unless @officev2_modules.empty? %>
+      <% @officev2_modules.each do |officev2_module| %>
+        <%= link_to "x", delete_pr_module_path(officev2_module.id), method: :delete, class: "delete-link" %>
+        <%= officev2_module.name %>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>Office v2 haven't any modules.</p>
+    <% end %>  
+  </div>
+
+  <div id="vivint" class="modules-settings">
+    <% unless @vivint_modules.empty? %>
+      <% @vivint_modules.each do |vivint_module| %>
+        <%= link_to "x", delete_pr_module_path(vivint_module.id), method: :delete, class: "delete-link" %>
+        <%= vivint_module.name %>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>Vivint haven't any modules.</p>
+    <% end %> 
+  </div>
+
+  <div id="myooma-old" class="modules-settings">
+    <% unless @myoomaold_modules.empty? %>
+      <% @myoomaold_modules.each do |myoomaold_module| %>
+        <%= link_to "x", delete_pr_module_path(myoomaold_module.id), method: :delete, class: "delete-link" %>
+        <%= myoomaold_module %>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>MyOoma old haven't any modules.</p>
+    <% end %> 
+  </div>
+
+  <div id="myooma-v2" class="modules-settings">
+    <% unless @myoomav2_modules.empty? %>
+      <% @myoomav2_modules.each do |myoomav2_module| %>
+        <%= link_to "x", delete_pr_module_path(myoomav2_module.id), method: :delete, class: "delete-link" %>
+        <%= myoomav2_module %>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>MyOoma v2 haven't any modules.</p>
+    <% end %> 
+  </div>
+
+  <div id="screener" class="modules-settings">
+    <% unless @screener_modules.empty? %>
+      <% @screener_modules.each do |screener_module| %>
+        <%= link_to "x", delete_pr_module_path(screener_module.id), method: :delete, class: "delete-link" %>
+        <%= screener_module %>
+        <br/>
+      <% end %>
+    <% else %>
+      <p>Screener haven't any modules.</p>
+    <% end %> 
+  </div>
+  <br/>
+
+  <a href="#add-module" id="add">+Add module</a>
+
+  <div id="add-module" class="modules-settings">
+    <br/>
+
+    <%= f.label "Module type:" %>
+    <%= f.label "API:" %>
+    <%= f.check_box :is_api %>
+    <%= f.label "UI:" %>
+    <%= f.check_box :is_ui %>
+    <br/>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit "Add" %>
+  </div>
+  <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  	$("#add-module").hide();
+
+    $("#add").click(function(){
+	    $("#add-module").show();
+    })
+
+    $("#pr_module_is_api").click(function(){
+      if ($("#pr_module_is_ui").prop('checked')) {
+        $("#pr_module_is_ui").attr('checked', false);
+      }
+    })
+
+    $("#pr_module_is_ui").click(function(){
+      if ($("#pr_module_is_api").prop('checked')) {
+        $("#pr_module_is_api").attr('checked', false);
+      }
+    })
+    
+    $("#office-v2").hide();
+    $("#vivint").hide();
+    $("#myooma-old").hide();
+    $("#myooma-v2").hide();
+    $("#screener").hide(); 
+
+    $('#pr_module_project_id').click(function(){
+
+      if ($('#pr_module_project_id option:selected').val() == 5){
+        $("#office-v2").show();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#pr_module_project_id option:selected').val() == 6){
+        $("#office-v2").hide();
+        $("#vivint").show();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#pr_module_project_id option:selected').val() == 7){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").show();
+        $("#myooma-v2").hide();
+        $("#screener").hide(); 
+      }
+
+      if ($('#pr_module_project_id option:selected').val() == 8){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").show();
+        $("#screener").hide(); 
+      }
+
+      if ($('#pr_module_project_id option:selected').val() == 9){
+        $("#office-v2").hide();
+        $("#vivint").hide();
+        $("#myooma-old").hide();
+        $("#myooma-v2").hide();
+        $("#screener").show(); 
+      }
+    });
+  });
+</script>

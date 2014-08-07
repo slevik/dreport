@@ -7,6 +7,15 @@ DReport::Application.routes.draw do
   get "report/day"
   post "report/go"
 
+  get "qa" => 'qa#index'
+  get "qa/index"
+  get "qa/projects"
+  get "qa/report", to: "qa#report"
+
+  delete "/pr_modules/:id", to: "pr_modules#destroy", as: "delete_pr_module"
+  post "/qa/projects", to: "pr_modules#create"
+  post "/qa/report", to: "qa#create_project_pr_module"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
