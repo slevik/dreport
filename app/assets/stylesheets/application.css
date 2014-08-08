@@ -17,7 +17,12 @@
 }
 
 .main {
-    padding:30px; margin: 30px; border:1px solid #b8860b; background-color: #fffacd; width: 1000px;font-family: vernada;
+    padding:30px; 
+    margin: 30px; 
+    border:1px solid #b8860b; 
+    background-color: #fffacd; 
+    width: 1000px; 
+    font-family: vernada;
     font-size: 16px;
 }
 
