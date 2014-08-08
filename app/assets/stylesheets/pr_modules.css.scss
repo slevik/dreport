@@ -24,3 +24,9 @@
   background-color: lightcoral;
 }
 
+.modules-settings {
+  list-style: none;
+  > li {
+  	cursor: move;
+  }
+}

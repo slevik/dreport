@@ -39,7 +39,7 @@ class QaController < ApplicationController
   private
 
     def get_modules
-      @modules = PrModule.all
+      @modules = PrModule.all.order("position")
     end
 
     def params_project_pr_module

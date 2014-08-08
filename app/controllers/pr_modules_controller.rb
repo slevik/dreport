@@ -19,6 +19,13 @@ class PrModulesController < ApplicationController
   	redirect_to "/qa/projects"
   end
 
+  def sort
+    params[:pr_module].each_with_index do |id, index|
+      PrModule.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
   private
 
     def pr_module_params

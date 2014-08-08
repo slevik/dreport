@@ -16,6 +16,9 @@ DReport::Application.routes.draw do
   post "/qa/projects", to: "pr_modules#create"
   post "/qa/report", to: "qa#create_project_pr_module"
 
+  resources :pr_modules do
+    collection { post :sort }
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,6 +5,7 @@ Show history
 <%= link_to('Modules', '/qa/projects') %>
 
 <br/><br/><br/>
+
 <div class="current_stack">
   <table >
     <% if @project_pr_modules %>
@@ -54,4 +55,11 @@ Show history
       </tr>
     <% end %>
   </table>
+
+<div class="h-digg_pagination">
+  <div class="digg_pagination">
+    <%= will_paginate @project_pr_modules, previous_label: h("<"), next_label: h(">") %>
+  </div>
+</div>
+
 </div>
