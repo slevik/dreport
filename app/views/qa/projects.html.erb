@@ -12,55 +12,59 @@ Modules
 
   <p>Modules:</p>
 
-  <div id="office-v2" class="modules-settings">
+  <ul id="office-v2" class="modules-settings" data-update-url="<%= sort_pr_modules_url %>">
     <% unless @officev2_modules.empty? %>
       <% @officev2_modules.each do |officev2_module| %>
-        <%= link_to "x", delete_pr_module_path(officev2_module.id), method: :delete, class: "delete-link" %>
-        <%= officev2_module.name %>
-        <br/>
+        <%= content_tag_for :li, officev2_module do %>
+          <%= link_to "x", delete_pr_module_path(officev2_module.id), method: :delete, class: "delete-link" %>
+          <%= officev2_module.name %>
+        <% end %>
       <% end %>
     <% else %>
       <p>Office v2 haven't any modules.</p>
     <% end %>  
-  </div>
+  </ul>
 
-  <div id="vivint" class="modules-settings">
+  <ul id="vivint" class="modules-settings">
     <% unless @vivint_modules.empty? %>
       <% @vivint_modules.each do |vivint_module| %>
-        <%= link_to "x", delete_pr_module_path(vivint_module.id), method: :delete, class: "delete-link" %>
-        <%= vivint_module.name %>
-        <br/>
+        <%= content_tag_for :li, vivint_module do %>
+          <%= link_to "x", delete_pr_module_path(vivint_module.id), method: :delete, class: "delete-link" %>
+          <%= vivint_module.name %>
+        <% end %>
       <% end %>
     <% else %>
       <p>Vivint haven't any modules.</p>
     <% end %> 
-  </div>
+  </ul>
 
-  <div id="myooma-old" class="modules-settings">
+  <ul id="myooma-old" class="modules-settings">
     <% unless @myoomaold_modules.empty? %>
       <% @myoomaold_modules.each do |myoomaold_module| %>
-        <%= link_to "x", delete_pr_module_path(myoomaold_module.id), method: :delete, class: "delete-link" %>
-        <%= myoomaold_module %>
-        <br/>
+        <%= content_tag_for :li, myoomaold_module do %>
+          <%= link_to "x", delete_pr_module_path(myoomaold_module.id), method: :delete, class: "delete-link" %>
+          <%= myoomaold_module %>
+        <% end %>
       <% end %>
     <% else %>
       <p>MyOoma old haven't any modules.</p>
     <% end %> 
-  </div>
+  </ul>
 
-  <div id="myooma-v2" class="modules-settings">
+  <ul id="myooma-v2" class="modules-settings">
     <% unless @myoomav2_modules.empty? %>
       <% @myoomav2_modules.each do |myoomav2_module| %>
-        <%= link_to "x", delete_pr_module_path(myoomav2_module.id), method: :delete, class: "delete-link" %>
-        <%= myoomav2_module %>
-        <br/>
+        <%= content_tag_for :li, myoomav2_module do %>
+          <%= link_to "x", delete_pr_module_path(myoomav2_module.id), method: :delete, class: "delete-link" %>
+          <%= myoomav2_module %>
+        <% end %>
       <% end %>
     <% else %>
       <p>MyOoma v2 haven't any modules.</p>
     <% end %> 
-  </div>
+  </ul>
 
-  <div id="screener" class="modules-settings">
+  <ul id="screener" class="modules-settings">
     <% unless @screener_modules.empty? %>
       <% @screener_modules.each do |screener_module| %>
         <%= link_to "x", delete_pr_module_path(screener_module.id), method: :delete, class: "delete-link" %>
@@ -70,7 +74,7 @@ Modules
     <% else %>
       <p>Screener haven't any modules.</p>
     <% end %> 
-  </div>
+  </ul>
   <br/>
 
   <a href="#add-module" id="add">+Add module</a>

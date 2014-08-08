@@ -39,7 +39,7 @@ class QaController < ApplicationController
   private
 
     def get_modules
-      @officev2_modules = PrModule.where(project_id: 5)
+      @officev2_modules = PrModule.where(project_id: 5).order("position")
       @vivint_modules = PrModule.where(project_id: 6)
       @myoomaold_modules = PrModule.where(project_id: 7)
       @myoomav2_modules = PrModule.where(project_id: 8)
