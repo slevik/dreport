@@ -32,8 +32,8 @@ Send report
   <div id="office-v2">
     <p>Modules:</p>
     <div class="modules-settings">
-      <% unless @officev2_modules.empty? %>
-        <% @officev2_modules.each do |officev2_module| %>
+      <% unless @modules.empty? %>
+        <% @modules.each do |officev2_module| %>
           <b>
             <div class="module_magic module_0" id="<%= officev2_module.id %>">
                 <%= "#{officev2_module.name} [#{officev2_module.is_api ? "API" : "UI"}]" %>
@@ -56,8 +56,8 @@ Send report
   <div id="vivint">
     <p>Modules:</p>
     <div class="modules-settings">
-      <% unless @vivint_modules.empty? %>
-        <% @vivint_modules.each do |vivint_module| %>
+      <% unless @modules.empty? %>
+        <% @modules.each do |vivint_module| %>
           <b>
             <div class="module_magic module_0" id="<%= vivint_module.id %>">
               <%= "#{vivint_module.name} [#{vivint_module.is_api ? "API" : "UI"}]" %>
@@ -80,8 +80,8 @@ Send report
   <div id="myooma-old">
     <p>Modules:</p>
     <div class="modules-settings">
-      <% unless @myoomaold_modules.empty? %>
-        <% @myoomaold_modules.each do |myoomaold_module| %>
+      <% unless @modules.empty? %>
+        <% @modules.each do |myoomaold_module| %>
           <b>
             <div class="module_magic module_0" id="<%= myoomaold_module.id %>">
               <%= "#{myoomaold_module.name} [#{myoomaold_module.is_api ? "API" : "UI"}]" %>
@@ -104,8 +104,8 @@ Send report
   <div id="myooma-v2">
     <p>Modules:</p>
     <div class="modules-settings">
-      <% unless @myoomav2_modules.empty? %>
-        <% @myoomav2_modules.each do |myoomav2_module| %>
+      <% unless @modules.empty? %>
+        <% @modules.each do |myoomav2_module| %>
           <b>
             <div class="module_magic module_0" id="<%= myoomav2_module.id %>">
               <%= "#{myoomav2_module.name} [#{myoomav2_module.is_api ? "API" : "UI"}]" %>
@@ -128,8 +128,8 @@ Send report
   <div id="screener">
     <p>Modules:</p>
     <div class="modules-settings">
-      <% unless @screener_modules.empty? %>
-        <% @screener_modules.each do |screener_module| %>
+      <% unless @modules.empty? %>
+        <% @modules.each do |screener_module| %>
           <b><%= "#{screener_module} [#{screener_module.is_api ? "API" : "UI"}]" %></b>
           <div style="display:none">
           <input type="radio" value="1" name="project_pr_module[modules][<%= screener_module.id %>]" /><span>Work</span>

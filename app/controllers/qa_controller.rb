@@ -39,11 +39,7 @@ class QaController < ApplicationController
   private
 
     def get_modules
-      @officev2_modules = PrModule.where(project_id: 5)
-      @vivint_modules = PrModule.where(project_id: 6)
-      @myoomaold_modules = PrModule.where(project_id: 7)
-      @myoomav2_modules = PrModule.where(project_id: 8)
-      @screener_modules = PrModule.where(project_id: 9)
+      @modules = PrModule.all
     end
 
     def params_project_pr_module
