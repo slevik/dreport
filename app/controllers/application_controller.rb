@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_project_pr_modules
-    @project_pr_modules = ProjectPrModule.all.order("created_at DESC").limit(100)
+    @project_pr_modules = ProjectPrModule.all.order("created_at DESC").limit(100).page(params[:page]).per_page(10)
   end
 
   def get_latest_bugs
