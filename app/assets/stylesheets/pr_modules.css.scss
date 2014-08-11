@@ -27,6 +27,7 @@
 .modules-settings {
   list-style: none;
   > li {
+    display: none;
   	cursor: move;
   }
 }

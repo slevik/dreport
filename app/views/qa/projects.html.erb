@@ -13,15 +13,15 @@ Modules
 
   <p>Modules:</p>
 
-  <div id="modules">
+  <ul id="modules" class="modules-settings" data-update-url="<%= sort_pr_modules_url %>">
     <% @modules.each do |pr_module| %>
-      <div data-id="<%= pr_module.project_id %>" style="display: none;">
+      <li class="pr_module" data-id="<%= pr_module.project_id %>" id="pr_module_<%= pr_module.id %>">
         <%= link_to "x", delete_pr_module_path(pr_module.id), method: :delete, class: "delete-link" %>
         <%= pr_module.name %>
         <br/>
-      </div>
+      </li>
     <% end %>
-  </div>
+  </ul>
 
   <br/>
 
@@ -55,8 +55,8 @@ Modules
       var projectId = $('#pr_module_project_id option:selected').val();
 
       if (projectId) {
-        $('#modules div').css("display", "none");
-        $('#modules div[data-id="' + projectId + '"]').css("display", "block");
+        $('#modules li').css("display", "none");
+        $('#modules li[data-id="' + projectId + '"]').css("display", "block");
       }    
     })
 
