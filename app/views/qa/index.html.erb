@@ -1,8 +1,18 @@
 <button onClick="window.location='/qa/report';" value="Send report">Send report</button>
 |
 Show history
+
+<%= form_tag 'qa', :method => 'get', :class => 'filter' do %>
+  <select id="filter-project">
+    <option >All</option>
+    <% @projects.each do |project| %>
+      <option id="<%= project.id %>" <% if params[:project_id].to_i == project.id %>selected<% end %>><%= project.name %></option>
+    <% end %>
+  </select>
+<% end %>
+
 |
-<%= link_to('Modules', '/qa/projects') %>
+<%= link_to('Modules', '/qa/projects', data: { no_turbolink: true }) %>
 
 <br/><br/><br/>
 

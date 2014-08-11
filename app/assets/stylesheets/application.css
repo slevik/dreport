@@ -255,3 +255,7 @@ a.delete-link {
 *:first-child + html .digg_pagination {
   overflow: hidden; 
 }
+
+.filter {
+  display: inline-block;
+}
