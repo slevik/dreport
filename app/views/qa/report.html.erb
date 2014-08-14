@@ -29,18 +29,24 @@ Send report
   <div id="modules">
     <p>Modules:</p>
     <% if @modules.any? %>
-      <% @modules.each do |pr_module| %>
-        <div data-id="<%= pr_module.project_id %>" class="module_magic module_0" id="<%= pr_module.id %>" style="display: none; position: relative;">
-          <%= "#{pr_module.name} [#{pr_module.is_api ? "API" : "UI"}]" %>
+      <ul class="modules-report">
+      <% @modules.group_by(&:is_api).each do |keys, values| %>
+            <li>
+              <% values.each do |pr_module| %>
+                  <div data-id="<%= pr_module.project_id %>" class="module_magic module_0" id="<%= pr_module.id %>" style="display: none; position: relative;">
+                    <%= "#{pr_module.name} [#{pr_module.is_api ? "API" : "UI"}]" %>
 
-          <div style="display:none">
-            <input  class="radio_<%= pr_module.id %>" type="radio" value="1" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Work</span>
-            <input class="radio_<%= pr_module.id %>" type="radio" value="-1" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Not work</span>
-            <input class="radio_<%= pr_module.id %>" checked type="radio" value="0" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Unchecked</span>
-            <br/>
-          </div>
-        </div>
+                    <div style="display:none">
+                      <input  class="radio_<%= pr_module.id %>" type="radio" value="1" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Work</span>
+                      <input class="radio_<%= pr_module.id %>" type="radio" value="-1" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Not work</span>
+                      <input class="radio_<%= pr_module.id %>" checked type="radio" value="0" name="project_pr_module[modules][<%= pr_module.id %>]" /><span>Unchecked</span>
+                      <br/>
+                    </div>
+                  </div>
+              <% end %>
+            </li>
       <% end %>
+      </ul>
     <% end %>
   </div>
   <br/><br/><br/>

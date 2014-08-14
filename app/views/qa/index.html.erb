@@ -44,9 +44,23 @@ Show history
         <tr>
           <td colspan="2">
             <p>
+              <span><i>UI</i></span>
               <% project_module.modules.each do |module_id, status| %>
                   <% mod = PrModule.find_by_id(module_id) %>
-                  <% if mod && mod.project_id == project_module.project_id %>
+                  
+                  <% if mod && mod.project_id == project_module.project_id && mod.is_ui %>
+                    <span class="<%= div_class(status) %>">
+                      <%= mod.name %>
+                    </span>
+                  <% end %>
+              <% end %>
+              <br>
+              
+              <span><i>API</i></span>
+              <% project_module.modules.each do |module_id, status| %>
+                  <% mod = PrModule.find_by_id(module_id) %>
+                  
+                  <% if mod && mod.project_id == project_module.project_id && !mod.is_ui %>
                     <span class="<%= div_class(status) %>">
                       <%= mod.name %>
                     </span>
@@ -66,10 +80,10 @@ Show history
     <% end %>
   </table>
 
-<div class="h-digg_pagination">
-  <div class="digg_pagination">
-    <%= will_paginate @project_pr_modules, previous_label: h("<"), next_label: h(">") %>
+  <div class="h-digg_pagination">
+    <div class="digg_pagination">
+      <%= will_paginate @project_pr_modules, previous_label: h("<"), next_label: h(">") %>
+    </div>
   </div>
-</div>
 
 </div>

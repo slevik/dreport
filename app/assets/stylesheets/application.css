@@ -26,6 +26,14 @@
     font-size: 16px;
 }
 
+.main:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 .bug input {
     width: 100px;
     margin: 5px;
@@ -181,9 +189,24 @@
   text-align: center;
   text-overflow: ellipsis;
 }
-.modules-settings {
-  padding-left: 40px;
+
+.modules-report li {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  width: 40%;
 }
+
+.modules-settings {
+  display: inline-block;
+  padding-left: 40px;
+  vertical-align: top;  
+}
+
+.modules-settings li:first-child {
+  text-align: center;
+}
+
 a.delete-link {
   color: red;
   text-decoration: none;

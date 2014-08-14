@@ -13,18 +13,22 @@ Modules
 
   <p>Modules:</p>
 
-  <ul id="modules" class="modules-settings" data-update-url="<%= sort_pr_modules_url %>">
-    <% @modules.each do |pr_module| %>
+  <% @modules.group_by(&:is_api).each do |keys, values| %>
+
+    <ul id="modules" class="modules-settings" data-update-url="<%= sort_pr_modules_url %>">
+      <li><h4><%= keys ? "API" : "UI" %></h4></li>
+      <% values.each do |pr_module| %>
       <li class="pr_module" data-id="<%= pr_module.project_id %>" id="pr_module_<%= pr_module.id %>">
         <%= link_to "x", delete_pr_module_path(pr_module.id), method: :delete, class: "delete-link" %>
         <%= pr_module.name %>
         <br/>
-      </li>
-    <% end %>
-  </ul>
+      </li>  
+      <% end %>
+    </ul>
+  <% end %>
+
 
   <br/>
-
   <a href="#add-module" id="add">+Add module</a>
   <div id="add-module" class="modules-settings">
     <br/>
@@ -56,7 +60,7 @@ Modules
 
       if (projectId) {
         $('#modules li').css("display", "none");
-        $('#modules li[data-id="' + projectId + '"]').css("display", "block");
+        $('#modules li[data-id="' + projectId + '"], #modules li:first-child').css("display", "block");
       }    
     })
 
