@@ -59,7 +59,7 @@ Show history
               <span><i>API</i></span>
               <% project_module.modules.each do |module_id, status| %>
                   <% mod = PrModule.find_by_id(module_id) %>
-                  
+
                   <% if mod && mod.project_id == project_module.project_id && !mod.is_ui %>
                     <span class="<%= div_class(status) %>">
                       <%= mod.name %>

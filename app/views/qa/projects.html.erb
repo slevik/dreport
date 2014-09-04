@@ -13,7 +13,7 @@ Modules
 
   <p>Modules:</p>
 
-  <% @modules.group_by(&:is_api).each do |keys, values| %>
+  <% @modules.group_by(&:is_ui).each do |keys, values| %>
 
     <ul id="modules" class="modules-settings" data-update-url="<%= sort_pr_modules_url %>">
       <li><h4><%= keys ? "API" : "UI" %></h4></li>
